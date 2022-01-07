@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebApplication1.Models.FileUppload>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form id="uploadForm" asp-action="UploadFile" asp-controller="FileUpploads" method="post"
+      enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;">
+    <dl>
+        <dt>
+            <label for="file">File</label>
+        </dt>
+        <dd>
+            <input id="file" type="file" name="file" />
+        </dd>
+    </dl>
+
+    <input class="btn btn-primary" type="submit" value="Upload" />
+    <div style="margin-top:15px">
+        <output form="uploadForm" name="result"></output>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UntrustedName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UntrustedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+              |
+                <a asp-action="Download" asp-route-id="@item.Id">Download</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

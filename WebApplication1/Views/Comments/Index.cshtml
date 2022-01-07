@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication1.Models.Comment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@foreach(var comment in Model)
+{
+    <div class="mb-3 border-bottom">
+        <div class="content">
+            @Html.Raw(comment.Content)
+        </div>
+        <div class="d-flex justify-content-between text-muted">
+            @comment.time
+            <a asp-action="Delete" asp-route-id="@comment.Id">Delete</a>
+
+        </div>
+
+    </div>
+
+}
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @Html.Raw(item.Content)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
